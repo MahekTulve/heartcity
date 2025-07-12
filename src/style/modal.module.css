@@ -1,0 +1,185 @@
+/* modal.module.css */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.designPart {
+  flex: 1;
+  background: linear-gradient(45deg, rgb(48, 47, 20), rgb(20, 19, 19));
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffbf00;
+}
+.img {
+  background-image: url('../assets/sign-up-concept-illustration.png');
+  height: 55vh;
+  background-size: cover;
+  background-position: center;
+  width: 25vw;
+}
+
+.designContent {
+  text-align: center;
+}
+
+.designContent h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.designContent p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.formContainer {
+  flex: 1;
+  padding: 2rem;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  color: #ddd;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.closeIcon button {
+display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+/* .closeIcon button :hover {
+    background: rgba(255, 193, 7, 0.8);
+    transform: rotate(90deg);
+  } */
+.formContainer h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+  margin-bottom: 1.5rem;
+  align-items: start;
+  justify-content: start;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  
+}
+
+.formGroup input {
+  width: 93%;
+    padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #ffbf00;
+}
+
+.submitBtn {
+  background: #ffbf00;
+  color: #333;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submitBtn:hover {
+  background: #e6ac00;
+}
+
+.footerNote {
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.submitBtn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+
+@media (max-width: 768px) {
+    .designPart{
+        display: none;
+    }
+    
+.formContainer {
+  padding: 1rem;
+}
+.formGroup input {
+  width: 90%;
+    padding: 10px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+.formGroup {
+
+  margin-bottom: 1rem;
+}
+}

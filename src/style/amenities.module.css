@@ -1,0 +1,244 @@
+/* amenities.module.css */
+.amenity {
+  position: relative;
+  background: linear-gradient(45deg, rgba(40, 36, 15, 0.95), rgba(15, 15, 15, 0.95)), 
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23111111"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></svg>');
+  overflow: hidden;
+}
+
+.backgroundContainer {
+  background: linear-gradient(to right, rgba(15, 14, 12, 0.752)), url('../assets/aboutimg.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
+  padding: 1px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #f8f9fa;
+  margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(45deg, #d4af37, #f9e076);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+  padding-top: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.amenitiesText {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.amenitiesText p {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(15, 15, 15, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.amenitiesText p:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d4af37, #f9e076);
+  border-radius: 8px 0 0 8px;
+}
+
+/* Animation classes */
+.sectionTitle.animate,
+.amenitiesText.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.amenityList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 -15px;
+}
+
+.w33 {
+  width: 33.333%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Updated card styles */
+.amenityCard {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 250px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease;
+}
+
+.amenityCard.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.amenityCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.amenityCardBanner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Dark overlay added */
+.amenityCardBanner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+  border-radius: 10px;
+}
+
+.amenityCard:hover .amenityCardBanner::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.imgCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.amenityCard:hover .imgCover {
+  transform: scale(1.05);
+}
+
+/* Updated content styles */
+.amenityCardContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2;
+}
+
+.amenityCardTitle {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: all 0.4s ease;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.amenityCard:hover .amenityCardTitle {
+  transform: translateY(0);
+  opacity: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 992px) {
+  .w33 {
+    width: 50%;
+  }
+  
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .w33 {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .amenityCard {
+    height: 230px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+    padding-top: 30px;
+  }
+  
+  .amenitiesText {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .backgroundContainer {
+
+  padding: 0.5px 0;
+}
+}
+
+@media (max-width: 576px) {
+  .sectionTitle {
+    font-size: 1.8rem;
+    padding-top: 20px;
+  }
+  
+  .amenityCardTitle {
+    font-size: 1.3rem;
+  }
+  .amenitiesText {
+
+  padding: 0 0rem;
+
+}
+
+
+}

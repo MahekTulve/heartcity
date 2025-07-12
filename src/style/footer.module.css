@@ -1,0 +1,241 @@
+.footer {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0;
+    background-color: #343a40;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.footer.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footerVideoBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.videoOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+.aboutMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    gap: 5%;
+}
+
+.heading {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: white;
+    font: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-justify: inter-word;
+
+}
+
+.highlight {
+    background: linear-gradient(45deg, #ffc107, #fffdd6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.subheading {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: white;
+     text-align: justify;
+    text-justify: inter-word;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: white;
+    font-size: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.aboutImg {
+    flex-shrink: 0;
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+}
+
+.logoLineContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.lineLeft,
+.lineRight {
+     width: 170px; 
+    height: 2px;
+}
+
+.lineLeft {
+    background: linear-gradient(to left, #ffc107, transparent);
+    margin-right: 15px;
+}
+
+.lineRight {
+    background: linear-gradient(to right, #ffc107, transparent);
+    margin-left: 15px;
+}
+
+.logo {
+    max-width: 250px;
+}
+
+.colmd3,
+.colmd4 {
+    flex: 0 0 30%;
+    padding: 5px;
+}
+
+.colauto {
+    display: flex;
+    align-items: center;
+}
+
+.col12 {
+    width: 100%;
+}
+
+.addressSection {
+    text-align: center;
+}
+
+
+.addressTitle {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #f8b400;
+}
+
+.addressDetails,
+.addressContent {
+    line-height: 1;
+}
+
+.vertLine {
+    width: 2px;
+    height: 100%;
+  background: linear-gradient(to bottom, #ffc107, transparent);
+    min-height: 150px;
+}
+
+
+
+.contactInfo {
+    text-align: center;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.contactItem img {
+    margin-right: 10px;
+}
+
+.contactItem a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .aboutMain {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .aboutImg {
+        margin-top: 30px;
+    }
+
+
+    .colmd3,
+    .colmd4 {
+        flex: 0 0 100%;
+    }
+
+    .vertLine {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .sectionImage{
+        width: 75vw;
+    }
+    .aboutImg{
+        display: none;
+    }
+    .logo{
+        width: 50vw;
+    }
+    .subheading {
+    font-size: 1rem;
+  
+}
+.heading {
+    font-size: 1.5rem;
+}
+.description {
+    font-size: 14px;
+   
+}
+.addressTitle  {
+    font-size: 0.9rem;
+}
+ 
+}

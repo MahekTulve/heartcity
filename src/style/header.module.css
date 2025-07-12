@@ -1,0 +1,129 @@
+.navbar {
+  background: linear-gradient(45deg, rgba(40, 36, 15, 0.39), rgba(15, 15, 15, 0.467));
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+}
+
+.scrolled {
+  background-color: rgba(40, 36, 15, 0.95);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 30px;
+}
+
+.navbarBrand img {
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.navbarCollapse {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.navLink {
+  background: linear-gradient(45deg, #ffc107, #fffdd6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  padding: 8px 15px;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.navLink:hover::before {
+  width: 80%;
+}
+
+.navLink:hover {
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.active {
+  color: rgba(255, 193, 7, 0.8) !important;
+  font-size: 0.9rem;
+  transform: scale(0.95);
+}
+
+.active::before {
+  width: 60%;
+  background-color: rgba(255, 193, 7, 0.8);
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: rgba(255, 193, 7, 0.8);
+  cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991.98px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbarCollapse {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .showMenu {
+    display: flex;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navLink {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+}
