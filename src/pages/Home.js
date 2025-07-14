@@ -5,6 +5,7 @@ import About from '../components/About'
 import Amenities from '../components/amenities'
 import Features from '../components/Features';
 import Layout from '../components/Layout';
+import img from '../assets/Heart City.png'
 
 function Home() {
   return (
@@ -14,6 +15,8 @@ function Home() {
         autoPlay 
         muted 
         loop 
+          preload="auto"
+  poster={img} 
         className={styles.responsivevideo}
       >
         <source src={heartCityVideo} type="video/mp4" />
