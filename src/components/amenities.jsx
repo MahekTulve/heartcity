@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from '../style/amenities.module.css';
 import swimmingImg from '../assets/swimming.jpg';
-import gymImg from '../assets/gym.jfif';
+import gymImg from '../assets/gym.jpg';
 import kidsPlayImg from '../assets/KidPlayArea.jpg';
 import basketballImg from '../assets/BasketballCourt.jpg';
 import gardenImg from '../assets/garden.jpg';

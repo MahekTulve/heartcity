@@ -1,55 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from '../style/emi.module.css'; 
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import styles from '../style/emi.module.css';
 import Chart from 'chart.js/auto';
 import { BiCalculator } from 'react-icons/bi';
 
 const EMICalculator = () => {
-  // State for input values
   const [loanAmount, setLoanAmount] = useState(2500000);
   const [interestRate, setInterestRate] = useState(8.5);
   const [loanTenure, setLoanTenure] = useState(20);
-  
-  // State for calculated values
+
   const [emi, setEmi] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
   const [totalPayable, setTotalPayable] = useState(0);
-  
-  // Ref for donut chart
+
   const donutChartRef = useRef(null);
   const donutChartInstance = useRef(null);
 
-  // Format currency in Indian Rupees
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-IN', {
       maximumFractionDigits: 0
     }).format(amount);
   };
 
-  // Calculate EMI
-  const calculateEMI = () => {
-    const monthlyRate = interestRate / 12 / 100;
-    const months = loanTenure * 12;
-    
-    const emiValue = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / 
-                   (Math.pow(1 + monthlyRate, months) - 1);
-    
-    const totalPayableValue = emiValue * months;
-    const totalInterestValue = totalPayableValue - loanAmount;
-    
-    setEmi(emiValue);
-    setTotalInterest(totalInterestValue);
-    setTotalPayable(totalPayableValue);
-    
-    // Update chart
-    updateDonutChart(loanAmount, totalInterestValue);
-  };
-
-  // Initialize or update donut chart
-  const updateDonutChart = (principal, interest) => {
+  // ✅ updateDonutChart moved above calculateEMI
+  const updateDonutChart = useCallback((principal, interest) => {
     if (donutChartInstance.current) {
       donutChartInstance.current.destroy();
     }
-    
+
     if (donutChartRef.current) {
       donutChartInstance.current = new Chart(donutChartRef.current, {
         type: 'doughnut',
@@ -83,18 +60,31 @@ const EMICalculator = () => {
         }
       });
     }
-  };
-
-  useEffect(() => {
-    calculateEMI();
   }, []);
 
+  const calculateEMI = useCallback(() => {
+    const monthlyRate = interestRate / 12 / 100;
+    const months = loanTenure * 12;
+
+    const emiValue = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) /
+      (Math.pow(1 + monthlyRate, months) - 1);
+
+    const totalPayableValue = emiValue * months;
+    const totalInterestValue = totalPayableValue - loanAmount;
+
+    setEmi(emiValue);
+    setTotalInterest(totalInterestValue);
+    setTotalPayable(totalPayableValue);
+
+    updateDonutChart(loanAmount, totalInterestValue);
+  }, [loanAmount, interestRate, loanTenure, updateDonutChart]);
+
+  // ✅ useEffect with correct dependency
   useEffect(() => {
     calculateEMI();
-  }, [loanAmount, interestRate, loanTenure,]);
+  }, [calculateEMI]);
 
   return (
-    
     <div className={styles.container}>
       <div className={styles.calculatorContainer}>
         <div className={styles.calculatorBody}>
@@ -103,11 +93,11 @@ const EMICalculator = () => {
               <div className={styles.inputCard}>
                 <div className={styles.inputCardHeader}>
                   <div className={styles.inputCardIcon}>
-                    <BiCalculator></BiCalculator>
+                    <BiCalculator />
                   </div>
                   <h4 className={styles.inputCardTitle}>Loan Details</h4>
                 </div>
-                
+
                 <div className={styles.inputGroup}>
                   <label htmlFor="loanAmount">Loan Amount (₹)</label>
                   <input
@@ -134,12 +124,12 @@ const EMICalculator = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.inputGroup}>
                   <label htmlFor="interestRate">
-                    Interest Rate (% per annum) 
-                    <i 
-                      className={`fas fa-info-circle ${styles.infoIcon}`} 
+                    Interest Rate (% per annum)
+                    <i
+                      className={`fas fa-info-circle ${styles.infoIcon}`}
                       title="Current market rate for home loans"
                     ></i>
                   </label>
@@ -158,7 +148,7 @@ const EMICalculator = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.inputGroup}>
                   <label htmlFor="loanTenure">Loan Tenure (years)</label>
                   <div className={styles.inputRow}>
@@ -177,19 +167,19 @@ const EMICalculator = () => {
                   </div>
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 className={styles.btnCalculate}
                 onClick={calculateEMI}
               >
                 <i className="fas fa-calculator me-2"></i> Calculate EMI
               </button>
             </div>
-            
+
             <div className={styles.rightColumn}>
               <div className={styles.resultContainer}>
                 <h3 className={styles.resultHeader}>Payment Summary</h3>
-                
+
                 <div className={styles.resultGrid}>
                   <div className={styles.resultBox}>
                     <div className={styles.resultTitle}>Monthly EMI</div>
@@ -204,7 +194,7 @@ const EMICalculator = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.summarySection}>
                   <div className={styles.summaryBox}>
                     <div className={styles.summaryItem}>
@@ -226,21 +216,21 @@ const EMICalculator = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className={styles.chartContainer}>
                 <h5 className={styles.chartTitle}>Payment Breakdown</h5>
                 <canvas ref={donutChartRef} className={styles.chartCanvas}></canvas>
                 <div className={styles.chartLegend}>
                   <div className={styles.legendItem}>
-                    <div 
-                      className={styles.legendColor} 
+                    <div
+                      className={styles.legendColor}
                       style={{ backgroundColor: 'rgb(205, 205, 255)' }}
                     ></div>
                     <span>Principal</span>
                   </div>
                   <div className={styles.legendItem}>
-                    <div 
-                      className={styles.legendColor} 
+                    <div
+                      className={styles.legendColor}
                       style={{ backgroundColor: 'blue' }}
                     ></div>
                     <span>Interest</span>
@@ -251,7 +241,7 @@ const EMICalculator = () => {
           </div>
         </div>
       </div>
-      
+
       <div className={styles.footerEMI}>
         <p>© 2023 Heartcity Properties. All rights reserved.</p>
         <p>

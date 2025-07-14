@@ -10,7 +10,7 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 5);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -31,24 +31,24 @@ function Header() {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
-         <div className={`${styles.navbarCollapse} ${menuOpen ? styles.showMenu : ''}`}>
+        <div className={`${styles.navbarCollapse} ${menuOpen ? styles.showMenu : ''}`}>
           <div className={styles.nav}>
             <Link className={styles.navLink} to="/#home" onClick={() => setMenuOpen(false)}>Home</Link>
-            
+
             <Link className={styles.navLink} to="/#about-section" onClick={() => setMenuOpen(false)}>About</Link>
-            
+
             <Link className={styles.navLink} to="/#amenities-section" onClick={() => setMenuOpen(false)}>Amenities</Link>
-            
+
             <Link className={styles.navLink} to="/#features-section" onClick={() => setMenuOpen(false)}>Features</Link>
             <Link className={styles.navLink} to="/#layout-section" onClick={() => setMenuOpen(false)}>Layout</Link>
-            
+            <Link className={styles.navLink} to="/emi-calculator" onClick={() => setMenuOpen(false)}>EMI Calculator</Link>
+
             <Link className={styles.navLink} to="/#Contact-section" onClick={() => setMenuOpen(false)}>Contact Us</Link>
-            <Link className={styles.navLink} to="/EMI Calculator" onClick={() => setMenuOpen(false)}>EMI Calculator</Link>
           </div>
         </div>
       </div>
     </nav>
-    
+
   );
 }
 

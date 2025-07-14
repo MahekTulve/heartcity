@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import EMI from '../pages/EMICalculator'
-// Add other real pages later
+const Home = lazy(() => import('../pages/Home'));
+const EMI = lazy(() => import('../pages/EMICalculator'));
 
 const AppRoutes = () => {
   return (
-    <Routes>
+    <Suspense fallback={<div style={{ textAlign: 'center', padding: '2rem' }}>Loading...</div>}>
+<Routes>
       <Route path="/" element={<Home />} />
       <Route path="/About" element={<Home />} />
       <Route path="/Amenities" element={<Home />} />
       <Route path="/Features" element={<Home />} />
       <Route path="/Layout" element={<Home />} />
+      <Route path="/emi-calculator" element={<EMI />} />
       <Route path="/Contact" element={<Home />} />
-      <Route path="/EMI Calculator" element={<EMI />} />
+      
     </Routes>
+    </Suspense>
+    
   );
 };
 
